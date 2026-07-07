@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+  <dict>
+    <key>Label</key>
+    <string>com.pd-os.nightly-nova</string>
+
+    <key>ProgramArguments</key>
+    <array>
+      <string>@REPO_ROOT@/setup/bin/run-nightly-nova-screenshots.sh</string>
+    </array>
+
+    <!-- Every day at 06:30 local time (after Nightly publish window) -->
+    <key>StartCalendarInterval</key>
+    <dict>
+      <key>Hour</key>
+      <integer>6</integer>
+      <key>Minute</key>
+      <integer>30</integer>
+    </dict>
+
+    <key>StandardOutPath</key>
+    <string>/tmp/pd-os.nightly-nova.log</string>
+    <key>StandardErrorPath</key>
+    <string>/tmp/pd-os.nightly-nova.log</string>
+
+    <key>RunAtLoad</key>
+    <false/>
+  </dict>
+</plist>

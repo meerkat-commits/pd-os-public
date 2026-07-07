@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>How I work — Brooke Katalinich</title>
+  <meta name="description" content="Agentic workflows, AI-native tool stack, PD-OS, and Firefox 2026 bets — how Brooke Katalinich runs design at scale.">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a class="site-logo" href="index.html">BK</a>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="index.html">Home</a>
+        <a href="work/firefox-ai-nova.html">Work</a>
+        <a href="how-i-work.html" aria-current="page">How I work</a>
+        <a href="about.html">About</a>
+        <a href="../draft/resume.md">Resume</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <header class="case-header">
+      <h1>How I work</h1>
+      <p class="case-meta"><span>Systems so design teams compound instead of resetting every quarter</span></p>
+    </header>
+
+    <section class="content-section narrow">
+      <p>I build systems so design teams compound instead of resetting every quarter. Agentic workflows, proof bars, and an AI-native tool stack.</p>
+      <p>Most design leaders describe operating models. I ship them: in PD-OS locally, upstream in the <a href="https://github.com/FirefoxUX/ai-native-knowledge-hub">team skills hub</a>, on Firefox's 2026 bets in production, and in <a href="https://maven.com/bkatalinich/ai-driven-design/preview/354376">AI-Driven Design on Maven</a> with Eduardo Feo.</p>
+    </section>
+
+    <section class="content-section narrow">
+      <h2>Firefox bets I own</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Bet</th><th>Scope</th><th>Status</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Project Nova</td>
+              <td>Full-browser redesign: chrome, NTP, onboarding, settings</td>
+              <td>In Nightly · decision registry · community-in-thread</td>
+            </tr>
+            <tr>
+              <td>Smart Window</td>
+              <td>Opt-in AI: Private, Classic, Smart Window; agentic in-window task completion</td>
+              <td>Program gates · 100% AI Window tokenized</td>
+            </tr>
+            <tr>
+              <td>AI-native org transformation</td>
+              <td>Operating system for 35-person hybrid org</td>
+              <td>2026 H2 mandate</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p>Three pillars: Agentic (Smart Window, shake-to-summarize), Habit Loops (NTP, tab groups, vertical tabs), Localization (global community feedback).</p>
+      <p>Exec partnership: PLG and monetization with Product, Engineering, Data, and Marketing.</p>
+    </section>
+
+    <section class="content-section narrow">
+      <h2>AI-native tool stack</h2>
+      <h3>Design to ship</h3>
+      <ul>
+        <li>Spec and align: Figma · nova-classic design-md · AWDTY token scorecard</li>
+        <li>Prototype: Cursor · code in Firefox tree · Claude Design for visual lock</li>
+        <li>Handoff: Sprint/ticket-linked artifacts</li>
+        <li>QA: Punch QA · single visual-gap backlog</li>
+      </ul>
+      <h3>Agents and skills</h3>
+      <ul>
+        <li>Team (canonical): <a href="https://github.com/FirefoxUX/ai-native-knowledge-hub">AI Native Knowledge Hub</a></li>
+        <li>Leadership (local): PD-OS — context library, initiative workspace, people memory, CLI dashboard</li>
+        <li>Routed skills: nova-classic · smart-window-design · accessibility · prototype-comments</li>
+      </ul>
+      <h3>Decisions and velocity</h3>
+      <ul>
+        <li>Fast calls: UserTesting / AI-moderated research</li>
+        <li>Throughput: Claude Co-work to Jira import · pd_os.cli snapshots</li>
+        <li>Context: Granola / Zoom .vtt · Slack to decisions.md</li>
+      </ul>
+    </section>
+
+    <section class="content-section narrow">
+      <h2>Agentic workflows</h2>
+      <h3>Critique to decision</h3>
+      <ol>
+        <li>Before posting: critique prep agent (hub) + principles doc</li>
+        <li>Post: Slack with [Mobile+AI · Design] prefix + validation gates</li>
+        <li>After thread settles: link + summary to decisions.md or initiative draft</li>
+      </ol>
+      <h3>Spec to ship (Nova / Smart Window)</h3>
+      <ol>
+        <li>Agent context: design-md + token scorecard</li>
+        <li>Figma spec or runnable prototype in Firefox tree</li>
+        <li>Punch QA, single backlog, eng ticket, Nightly</li>
+      </ol>
+      <h3>Anyone generates, discipline gates</h3>
+      <p>AI accelerates thinking, making, and review. Design gates craft and intent. Eng gates merge and release. PM gates scope and success criteria. The bar is what ships and what users feel — enabled by hub skills, context, and code in the tree.</p>
+      <h3>Hub to org spread</h3>
+      <p>Point agents at hub (main). Designer executes. Proof bar met. Pillar lead coaches. PR upstream. No personal fork drift.</p>
+    </section>
+
+    <div class="system-grid">
+      <article class="system-card">
+        <h3>PD-OS</h3>
+        <p>Product Design Operating System, inspired by PM-OS.</p>
+        <ul>
+          <li>Context library + initiative workspace</li>
+          <li>Transcript → people memory</li>
+          <li>Critique prep + calibration agents</li>
+          <li>Local dashboard for digests</li>
+        </ul>
+        <pre><code>python3 -m pd_os.cli dashboard --open</code></pre>
+      </article>
+
+      <article class="system-card">
+        <h3>AI Native Knowledge Hub</h3>
+        <p>Team skills in a canonical repo. No personal fork drift.</p>
+        <ul>
+          <li><a href="https://github.com/FirefoxUX/ai-native-knowledge-hub" target="_blank" rel="noopener">FirefoxUX/ai-native-knowledge-hub</a></li>
+          <li>PD-OS: stakeholder context</li>
+          <li>Hub: reusable procedures</li>
+        </ul>
+      </article>
+
+      <article class="system-card">
+        <h3>Nova token scorecard</h3>
+        <p>Living AWDTY dashboard for agents and PMs.</p>
+        <ul>
+          <li>NTP: 28% → 77.5% propagation</li>
+          <li>Surface health by chrome area</li>
+          <li>Agent rules: never invent hex</li>
+        </ul>
+      </article>
+    </div>
+
+    <section class="content-section narrow">
+      <h2>Writing defaults</h2>
+      <ul>
+        <li>Lead with a 1–2 sentence TL;DR</li>
+        <li>Then 3–6 bullets: decision, rationale, trade-offs, next steps</li>
+        <li>Tone: direct, calm, specific</li>
+      </ul>
+      <blockquote>I optimize for enabling AI-native builders at scale — compounding context, shared skills, and proof that shows up in product.</blockquote>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>BK · Director, Mobile &amp; AI UX · Mozilla Firefox</p>
+  </footer>
+</body>
+</html>

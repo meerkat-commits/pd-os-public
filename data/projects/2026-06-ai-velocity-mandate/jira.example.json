@@ -1,0 +1,22 @@
+{
+  "site": "https://mozilla-hub.atlassian.net",
+  "velocity_window_days": 14,
+  "status_groups": {
+    "done": ["Done", "Closed"],
+    "in_design": ["In Design", "Design Review"],
+    "ready_for_eng": ["Ready for Development"],
+    "in_progress_eng": ["In Progress", "In QA"]
+  },
+  "team_members": ["Designer One", "Designer Two"],
+  "boards": [
+    {
+      "id": 1234,
+      "name": "My team board",
+      "pillar": "mobile",
+      "manager": "UX Manager",
+      "discover_name_contains": "Mobile UX",
+      "project_key": "FXMOB",
+      "board_url": "https://mozilla-hub.atlassian.net/jira/software/c/projects/FXAI/boards/13805"
+    }
+  ]
+}

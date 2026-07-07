@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PD-OS</title>
+  <style>
+    :root {
+      --bg: #f6f5f2;
+      --panel: #ffffff;
+      --border: #e4e0d8;
+      --text: #1c1b19;
+      --muted: #6b6560;
+      --accent: #ff7139;
+      --accent-soft: #fff1ea;
+      --sidebar-w: 300px;
+      --ok: #2d6a4f;
+      --warn: #b45309;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "SF Pro Text", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      height: 100vh;
+      overflow: hidden;
+    }
+    .shell {
+      display: grid;
+      grid-template-columns: var(--sidebar-w) 1fr;
+      height: 100vh;
+    }
+    aside {
+      background: var(--panel);
+      border-right: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+    }
+    .brand {
+      padding: 1rem 1rem 0.75rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .brand h1 {
+      margin: 0;
+      font-size: 1.05rem;
+      font-weight: 650;
+      letter-spacing: -0.02em;
+    }
+    .mode-tabs {
+      display: flex;
+      gap: 0.35rem;
+      margin-top: 0.65rem;
+      flex-wrap: wrap;
+    }
+    .mode-tab {
+      appearance: none;
+      border: 1px solid var(--border);
+      background: var(--panel);
+      color: var(--muted);
+      border-radius: 999px;
+      padding: 0.28rem 0.65rem;
+      font-size: 0.78rem;
+      font-weight: 550;
+      cursor: pointer;
+    }
+    .mode-tab:hover { background: #faf9f7; color: var(--text); }
+    .mode-tab.active {
+      background: var(--accent-soft);
+      border-color: #ffc9b0;
+      color: #9a3412;
+    }
+    .nav {
+      overflow: auto;
+      flex: 1;
+      padding: 0.5rem 0 1rem;
+    }
+    .section-label {
+      padding: 0.85rem 1rem 0.35rem;
+      font-size: 0.72rem;
+      font-weight: 650;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--muted);
+    }
+    .file-btn {
+      display: block;
+      width: 100%;
+      text-align: left;
+      border: 0;
+      background: transparent;
+      padding: 0.55rem 1rem;
+      cursor: pointer;
+      font: inherit;
+      color: inherit;
+    }
+    .file-btn:hover { background: #faf9f7; }
+    .file-btn.active {
+      background: var(--accent-soft);
+      border-right: 3px solid var(--accent);
+    }
+    .file-title {
+      display: block;
+      font-size: 0.9rem;
+      font-weight: 550;
+      line-height: 1.35;
+    }
+    .file-meta {
+      display: block;
+      margin-top: 0.15rem;
+      font-size: 0.75rem;
+      color: var(--muted);
+      line-height: 1.35;
+    }
+    .badge {
+      display: inline-block;
+      font-size: 0.68rem;
+      font-weight: 650;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      padding: 0.1rem 0.35rem;
+      border-radius: 4px;
+      background: #f0eeea;
+      color: var(--muted);
+      margin-left: 0.25rem;
+      vertical-align: middle;
+    }
+    .badge.form { background: #e8f5ee; color: var(--ok); }
+    main {
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+    }
+    .toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 0.85rem 1.25rem;
+      border-bottom: 1px solid var(--border);
+      background: var(--panel);
+      flex-wrap: wrap;
+    }
+    .toolbar h2 {
+      margin: 0;
+      font-size: 1rem;
+      font-weight: 600;
+    }
+    .toolbar-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+    button.secondary, button.primary {
+      appearance: none;
+      border: 1px solid var(--border);
+      background: var(--panel);
+      color: var(--text);
+      border-radius: 8px;
+      padding: 0.4rem 0.75rem;
+      font-size: 0.82rem;
+      cursor: pointer;
+    }
+    button.secondary:hover { background: #faf9f7; }
+    button.primary {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+      font-weight: 600;
+    }
+    button.primary:hover { filter: brightness(0.95); }
+    .content-wrap {
+      overflow: auto;
+      padding: 1.5rem 2rem 3rem;
+      flex: 1;
+    }
+    .empty {
+      color: var(--muted);
+      font-size: 0.95rem;
+      line-height: 1.6;
+      max-width: 42rem;
+    }
+    .markdown-body {
+      max-width: 52rem;
+      line-height: 1.65;
+      font-size: 0.96rem;
+    }
+    .markdown-body h1, .markdown-body h2, .markdown-body h3 {
+      line-height: 1.25;
+      letter-spacing: -0.02em;
+      margin-top: 1.6rem;
+      margin-bottom: 0.75rem;
+    }
+    .markdown-body h1 { font-size: 1.65rem; margin-top: 0; }
+    .markdown-body h2 {
+      font-size: 1.2rem;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.35rem;
+    }
+    .markdown-body h3 { font-size: 1rem; }
+    .markdown-body ul { padding-left: 1.25rem; }
+    .markdown-body li { margin: 0.35rem 0; }
+    .markdown-body p { margin: 0.75rem 0; }
+    .markdown-body code {
+      background: #f0eeea;
+      padding: 0.1rem 0.35rem;
+      border-radius: 4px;
+      font-size: 0.88em;
+    }
+    .markdown-body pre {
+      background: #1c1b19;
+      color: #f6f5f2;
+      padding: 1rem;
+      border-radius: 10px;
+      overflow: auto;
+    }
+    .markdown-body blockquote {
+      margin: 1rem 0;
+      padding: 0.5rem 1rem;
+      border-left: 3px solid var(--accent);
+      background: var(--accent-soft);
+      color: #4a4540;
+    }
+    .markdown-body em { color: var(--muted); }
+    .status { font-size: 0.82rem; color: var(--muted); }
+    .form-panel { max-width: 40rem; }
+    .form-panel h3 {
+      margin: 0 0 0.35rem;
+      font-size: 1.1rem;
+    }
+    .form-panel .lead {
+      margin: 0 0 1.25rem;
+      color: var(--muted);
+      font-size: 0.92rem;
+      line-height: 1.5;
+    }
+    .field {
+      margin-bottom: 1rem;
+    }
+    .field label {
+      display: block;
+      font-size: 0.82rem;
+      font-weight: 600;
+      margin-bottom: 0.35rem;
+    }
+    .field .hint {
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin-top: 0.25rem;
+    }
+    .field input, .field select, .field textarea {
+      width: 100%;
+      font: inherit;
+      font-size: 0.9rem;
+      padding: 0.55rem 0.65rem;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: var(--panel);
+    }
+    .field textarea { min-height: 4.5rem; resize: vertical; }
+    .field-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem;
+    }
+    .checkbox-row {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.9rem;
+    }
+    .checkbox-row input { width: auto; }
+    .output-block {
+      margin-top: 1.5rem;
+      max-width: 52rem;
+    }
+    .output-block h4 {
+      margin: 0 0 0.5rem;
+      font-size: 0.95rem;
+    }
+    .output-block pre {
+      background: #1c1b19;
+      color: #f6f5f2;
+      padding: 1rem;
+      border-radius: 10px;
+      overflow: auto;
+      font-size: 0.82rem;
+      line-height: 1.5;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+    .toast {
+      font-size: 0.82rem;
+      color: var(--ok);
+      font-weight: 550;
+    }
+    @media (max-width: 900px) {
+      .shell { grid-template-columns: 1fr; }
+      aside {
+        max-height: 38vh;
+        border-right: 0;
+        border-bottom: 1px solid var(--border);
+      }
+      .field-row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <aside>
+      <div class="brand">
+        <h1>PD-OS</h1>
+        <div class="mode-tabs" id="mode-tabs">
+          <button type="button" class="mode-tab active" data-mode="artifacts">Artifacts</button>
+          <button type="button" class="mode-tab" data-mode="agents">Agents</button>
+          <button type="button" class="mode-tab" data-mode="changelog">Changelog</button>
+        </div>
+      </div>
+      <div class="nav" id="nav"></div>
+    </aside>
+    <main>
+      <div class="toolbar">
+        <h2 id="doc-title">Select a file</h2>
+        <div class="toolbar-actions">
+          <span class="status" id="doc-meta"></span>
+          <button class="secondary" id="view-agent-btn" type="button" hidden>View agent doc</button>
+          <button class="secondary" id="form-btn" type="button" hidden>Open prep form</button>
+          <button class="secondary" id="refresh-btn" type="button">Refresh</button>
+        </div>
+      </div>
+      <div class="content-wrap">
+        <div class="empty" id="placeholder">
+          Pick an item from the sidebar, or run
+          <code>python3 -m pd_os.cli run-daily</code> to generate today's digest.
+        </div>
+        <article class="markdown-body" id="content" hidden></article>
+        <div id="form-panel" hidden></div>
+      </div>
+    </main>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script>
+    const nav = document.getElementById('nav');
+    const content = document.getElementById('content');
+    const formPanel = document.getElementById('form-panel');
+    const placeholder = document.getElementById('placeholder');
+    const docTitle = document.getElementById('doc-title');
+    const docMeta = document.getElementById('doc-meta');
+    const viewAgentBtn = document.getElementById('view-agent-btn');
+    const formBtn = document.getElementById('form-btn');
+    let mode = 'artifacts';
+    let activeId = null;
+    let activeAgent = null;
+    let showingForm = false;
+    let agentsData = null;
+
+    document.querySelectorAll('.mode-tab').forEach(btn => {
+      btn.addEventListener('click', () => {
+        mode = btn.dataset.mode;
+        document.querySelectorAll('.mode-tab').forEach(b => b.classList.toggle('active', b === btn));
+        activeId = null;
+        showingForm = false;
+        loadNav();
+      });
+    });
+
+    async function loadNav() {
+      if (mode === 'artifacts') {
+        await loadArtifactsNav();
+      } else if (mode === 'agents') {
+        await loadAgentsNav();
+      } else {
+        loadChangelogNav();
+      }
+    }
+
+    async function loadArtifactsNav() {
+      const res = await fetch('/api/files');
+      const data = await res.json();
+      nav.innerHTML = '';
+      for (const section of data.sections) {
+        appendSection(section.label, section.files.map(f => ({
+          id: f.id,
+          title: f.title,
+          meta: f.meta,
+          kind: 'artifact',
+        })));
+      }
+      if (!activeId && data.default_id) {
+        openArtifact(data.default_id);
+      } else if (!activeId) {
+        resetMain('Select a file', '');
+      }
+    }
+
+    async function loadAgentsNav() {
+      if (!agentsData) {
+        const res = await fetch('/api/agents');
+        agentsData = await res.json();
+      }
+      nav.innerHTML = '';
+      for (const group of agentsData.groups) {
+        appendSection(group.label, group.agents.map(a => ({
+          id: a.id,
+          title: a.title,
+          meta: a.summary,
+          kind: 'agent',
+          has_form: a.has_form,
+        })));
+      }
+      if (agentsData.skills.length) {
+        appendSection('PD-OS skills (local)', agentsData.skills.map(s => ({
+          id: s.id,
+          title: s.title,
+          meta: s.summary,
+          kind: 'skill',
+        })));
+      }
+      if (agentsData.hub_skills && agentsData.hub_skills.length) {
+        appendSection('AI Native Knowledge Hub', agentsData.hub_skills.map(s => ({
+          id: s.path || s.url,
+          title: s.title,
+          meta: s.summary,
+          kind: 'hub',
+          url: s.url,
+        })));
+      }
+      if (!activeId && agentsData.groups[0]?.agents[0]) {
+        openAgent(agentsData.groups[0].agents[0]);
+      }
+    }
+
+    function loadChangelogNav() {
+      nav.innerHTML = '';
+      appendSection('Repo history', [{
+        id: 'CHANGELOG.md',
+        title: 'CHANGELOG.md',
+        meta: 'What changed in PD-OS',
+        kind: 'changelog',
+      }]);
+      if (!activeId) openChangelog();
+    }
+
+    function appendSection(label, items) {
+      const sectionLabel = document.createElement('div');
+      sectionLabel.className = 'section-label';
+      sectionLabel.textContent = label;
+      nav.appendChild(sectionLabel);
+      if (!items.length) {
+        const empty = document.createElement('div');
+        empty.style.padding = '0 1rem 0.5rem';
+        empty.style.color = '#6b6560';
+        empty.style.fontSize = '0.82rem';
+        empty.textContent = 'Nothing yet';
+        nav.appendChild(empty);
+        return;
+      }
+      for (const item of items) {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'file-btn' + (item.id === activeId ? ' active' : '');
+        btn.dataset.id = item.id;
+        const badge = item.has_form ? '<span class="badge form">form</span>' : '';
+        btn.innerHTML =
+          '<span class="file-title">' + item.title + badge + '</span>' +
+          '<span class="file-meta">' + item.meta + '</span>';
+        btn.addEventListener('click', () => {
+          if (item.kind === 'artifact') openArtifact(item.id, item.title, item.meta);
+          else if (item.kind === 'changelog') openChangelog();
+          else if (item.kind === 'hub') {
+            window.open(item.url, '_blank', 'noopener');
+          } else openAgent({
+            id: item.id,
+            title: item.title,
+            summary: item.meta,
+            has_form: item.has_form,
+          });
+        });
+        nav.appendChild(btn);
+      }
+    }
+
+    function resetMain(title, meta) {
+      docTitle.textContent = title;
+      docMeta.textContent = meta || '';
+      placeholder.hidden = false;
+      content.hidden = true;
+      formPanel.hidden = true;
+      viewAgentBtn.hidden = true;
+      formBtn.hidden = true;
+    }
+
+    function setActiveNav(id) {
+      document.querySelectorAll('.file-btn').forEach(el => {
+        el.classList.toggle('active', el.dataset.id === id);
+      });
+    }
+
+    async function openArtifact(id, title, meta) {
+      activeId = id;
+      activeAgent = null;
+      showingForm = false;
+      setActiveNav(id);
+      docTitle.textContent = title || id;
+      docMeta.textContent = meta || '';
+      placeholder.hidden = true;
+      content.hidden = false;
+      formPanel.hidden = true;
+      viewAgentBtn.hidden = true;
+      formBtn.hidden = true;
+      content.innerHTML = '<p class="status">Loading…</p>';
+      const res = await fetch('/api/content?id=' + encodeURIComponent(id));
+      if (!res.ok) {
+        content.innerHTML = '<p>Could not load file.</p>';
+        return;
+      }
+      const data = await res.json();
+      renderMarkdown(data.content);
+    }
+
+    async function openAgent(agent) {
+      activeId = agent.id;
+      activeAgent = agent;
+      setActiveNav(agent.id);
+      docTitle.textContent = agent.title;
+      docMeta.textContent = agent.summary || '';
+      viewAgentBtn.hidden = !agent.has_form;
+      formBtn.hidden = !agent.has_form;
+      if (agent.has_form && !showingForm) {
+        showCritiqueForm();
+      } else {
+        await showAgentDoc(agent.id);
+      }
+    }
+
+    async function showAgentDoc(id) {
+      showingForm = false;
+      placeholder.hidden = true;
+      content.hidden = false;
+      formPanel.hidden = true;
+      content.innerHTML = '<p class="status">Loading…</p>';
+      const res = await fetch('/api/agent?id=' + encodeURIComponent(id));
+      if (!res.ok) {
+        content.innerHTML = '<p>Could not load agent.</p>';
+        return;
+      }
+      const data = await res.json();
+      renderMarkdown(data.content);
+    }
+
+  function showCritiqueForm() {
+      showingForm = true;
+      placeholder.hidden = true;
+      content.hidden = true;
+      formPanel.hidden = false;
+      formPanel.innerHTML = `
+        <div class="form-panel">
+          <h3>Critique prep</h3>
+          <p class="lead">Fill this in, generate a Cursor prompt, paste into Cursor with <code>@setup/agents/critique-prep.md</code> (routes to <a href="https://github.com/FirefoxUX/ai-native-knowledge-hub" target="_blank" rel="noopener">AI Native Knowledge Hub</a>). Copy the Slack skeleton into <code>#mobile_x_ai</code> after the agent runs.</p>
+          <form id="critique-form">
+            <div class="field-row">
+              <div class="field">
+                <label for="jira_key">Jira key</label>
+                <input id="jira_key" name="jira_key" placeholder="FXMOB-123" />
+              </div>
+              <div class="field">
+                <label for="phase">Phase</label>
+                <select id="phase" name="phase">
+                  <option>Discovery</option>
+                  <option>Definition</option>
+                  <option selected>Design</option>
+                  <option>Validation</option>
+                  <option>Handoff</option>
+                </select>
+              </div>
+            </div>
+            <div class="field-row">
+              <div class="field">
+                <label for="figma_url">Figma link</label>
+                <input id="figma_url" name="figma_url" type="url" placeholder="https://figma.com/design/…" />
+              </div>
+              <div class="field">
+                <label for="frame_name">Frame name</label>
+                <input id="frame_name" name="frame_name" placeholder="Settings · VPN permissions" />
+              </div>
+            </div>
+            <div class="field-row">
+              <div class="field">
+                <label for="decision_type">Decision type</label>
+                <select id="decision_type" name="decision_type">
+                  <option>Direction</option>
+                  <option>Scope</option>
+                  <option>Quality bar</option>
+                  <option>Risk</option>
+                  <option>Explore</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="owner">Owner</label>
+                <input id="owner" name="owner" placeholder="@you" />
+              </div>
+            </div>
+            <div class="field">
+              <label for="problem_statement">Problem (user + job + why now)</label>
+              <textarea id="problem_statement" name="problem_statement" placeholder="Android users drop off at VPN permissions…"></textarea>
+            </div>
+            <div class="field">
+              <label for="if_no_alignment">If reviewers say no</label>
+              <input id="if_no_alignment" name="if_no_alignment" placeholder="Scope cut, slip sprint, escalate to…" />
+            </div>
+            <div class="field">
+              <label for="exit_goal">Exit we're aiming for</label>
+              <input id="exit_goal" name="exit_goal" placeholder="Build-ready design for Nightly MVP" />
+            </div>
+            <div class="field">
+              <label for="constraints">Constraints</label>
+              <textarea id="constraints" name="constraints" placeholder="Ship Nightly week 24, a11y AA, no new strings…"></textarea>
+            </div>
+            <div class="field-row">
+              <div class="field">
+                <label for="by_when">By when</label>
+                <input id="by_when" name="by_when" placeholder="Fri EOD / Sprint 12" />
+              </div>
+              <div class="field">
+                <label for="initiative">Initiative folder (optional)</label>
+                <input id="initiative" name="initiative" placeholder="2026-06-vpn-setup" />
+                <div class="hint">Under data/projects/</div>
+              </div>
+            </div>
+            <div class="field checkbox-row">
+              <input type="checkbox" id="nova_in_scope" name="nova_in_scope" />
+              <label for="nova_in_scope">Nova / desktop chrome in scope</label>
+            </div>
+            <div class="toolbar-actions" style="margin-top:0.5rem">
+              <button type="submit" class="primary">Generate</button>
+              <button type="button" class="secondary" id="save-draft-btn">Save draft</button>
+              <span class="toast" id="form-toast" hidden></span>
+            </div>
+          </form>
+          <div class="output-block" id="critique-output" hidden>
+            <h4>Cursor prompt</h4>
+            <pre id="cursor-prompt"></pre>
+            <button type="button" class="secondary" data-copy="cursor-prompt">Copy prompt</button>
+            <h4 style="margin-top:1.25rem">Slack skeleton</h4>
+            <pre id="slack-skeleton"></pre>
+            <button type="button" class="secondary" data-copy="slack-skeleton">Copy Slack post</button>
+          </div>
+        </div>`;
+      const form = document.getElementById('critique-form');
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        await generateCritique(false);
+      });
+      document.getElementById('save-draft-btn').addEventListener('click', () => generateCritique(true));
+      formPanel.querySelectorAll('[data-copy]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const el = document.getElementById(btn.dataset.copy);
+          navigator.clipboard.writeText(el.textContent || '');
+          flashToast('Copied');
+        });
+      });
+    }
+
+    async function generateCritique(save) {
+      const form = document.getElementById('critique-form');
+      const payload = Object.fromEntries(new FormData(form).entries());
+      payload.nova_in_scope = document.getElementById('nova_in_scope').checked;
+      const res = await fetch('/api/critique-prep', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ...payload, save }),
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        flashToast(data.error || 'Failed');
+        return;
+      }
+      document.getElementById('critique-output').hidden = false;
+      document.getElementById('cursor-prompt').textContent = data.cursor_prompt;
+      document.getElementById('slack-skeleton').textContent = data.slack_skeleton;
+      if (data.saved_path) {
+        flashToast('Saved to ' + data.saved_path);
+        if (mode === 'artifacts') loadNav();
+      } else {
+        flashToast('Generated');
+      }
+    }
+
+    function flashToast(msg) {
+      const el = document.getElementById('form-toast');
+      if (!el) return;
+      el.textContent = msg;
+      el.hidden = false;
+      setTimeout(() => { el.hidden = true; }, 2800);
+    }
+
+    async function openChangelog() {
+      activeId = 'CHANGELOG.md';
+      activeAgent = null;
+      showingForm = false;
+      setActiveNav('CHANGELOG.md');
+      docTitle.textContent = 'Changelog';
+      docMeta.textContent = 'PD-OS history';
+      viewAgentBtn.hidden = true;
+      formBtn.hidden = true;
+      placeholder.hidden = true;
+      content.hidden = false;
+      formPanel.hidden = true;
+      content.innerHTML = '<p class="status">Loading…</p>';
+      const res = await fetch('/api/changelog');
+      const data = await res.json();
+      renderMarkdown(data.content);
+    }
+
+    function renderMarkdown(text) {
+      if (window.marked) {
+        content.innerHTML = marked.parse(text);
+      } else {
+        content.innerHTML = '<pre>' + text.replace(/</g, '&lt;') + '</pre>';
+      }
+    }
+
+    viewAgentBtn.addEventListener('click', () => {
+      if (activeAgent) showAgentDoc(activeAgent.id);
+    });
+    formBtn.addEventListener('click', () => {
+      if (activeAgent?.has_form) showCritiqueForm();
+    });
+    document.getElementById('refresh-btn').addEventListener('click', loadNav);
+
+    loadNav();
+  </script>
+</body>
+</html>

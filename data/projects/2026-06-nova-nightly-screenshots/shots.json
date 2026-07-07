@@ -1,0 +1,272 @@
+{
+  "project": "2026-06-nova-nightly-screenshots",
+  "firefox_binary": "/Applications/Firefox Nightly.app",
+  "firefox_app": "Firefox Nightly",
+  "window": {
+    "width": 1440,
+    "height": 900
+  },
+  "base_prefs": {
+    "browser.nova.enabled": true,
+    "browser.newtabpage.enabled": true,
+    "browser.newtabpage.activity-stream.nova.enabled": true,
+    "browser.urlbar.quicksuggest.ampTopPickUseNovaIconSize": true,
+    "browser.smartwindow.enabled": true
+  },
+  "shots": [
+    {
+      "id": "chrome",
+      "filename": "01-chrome.png",
+      "profile": "nova",
+      "url": "https://example.com",
+      "wait_ms": 8000,
+      "notes": "Default Nova chrome on a loaded page (no-marionette to avoid urlbar stripes).",
+      "automation": "hybrid",
+      "requires_no_marionette": true
+    },
+    {
+      "id": "sidebar",
+      "filename": "02-sidebar.png",
+      "profile": "nova",
+      "url": "https://example.com",
+      "prefs": {
+        "sidebar.revamp": true,
+        "sidebar.visibility": "always-show",
+        "sidebar.backupState": "{\"command\":\"viewBookmarksSidebar\",\"panelWidth\":291,\"launcherWidth\":56,\"expandedLauncherWidth\":217,\"launcherExpanded\":false,\"launcherVisible\":true}"
+      },
+      "wait_ms": 8000,
+      "notes": "Bookmarks sidebar open via sidebar.backupState pref (no-marionette: avoids urlbar stripes).",
+      "automation": "hybrid",
+      "requires_no_marionette": true
+    },
+    {
+      "id": "vertical-tabs",
+      "filename": "03-vertical-tabs.png",
+      "profile": "nova",
+      "url": "https://example.com",
+      "prefs": {
+        "sidebar.verticalTabs": true,
+        "sidebar.revamp": true,
+        "sidebar.visibility": "always-show",
+        "browser.pinning.onboarding.dismissed": true,
+        "browser.tabs.pinnedTabsOnboarding.dismissed": true,
+        "sidebar.new-sidebar.has-used": true
+      },
+      "wait_ms": 8000,
+      "notes": "Vertical tabs via sidebar.verticalTabs pref (no-marionette: avoids urlbar stripes; pinning onboarding dismissed).",
+      "automation": "hybrid",
+      "requires_no_marionette": true
+    },
+    {
+      "id": "tab-grouping",
+      "filename": "04-tab-grouping.png",
+      "profile": "nova",
+      "url": "https://example.com",
+      "prefs": {
+        "browser.tabs.groups.enabled": true
+      },
+      "open_tabs": [
+        "https://example.com",
+        "https://www.mozilla.org",
+        "https://www.example.org"
+      ],
+      "tab_group": true,
+      "wait_ms": 3500,
+      "notes": "Three tabs; best-effort tab group via chrome script.",
+      "automation": "best_effort"
+    },
+    {
+      "id": "new-tab",
+      "filename": "05-new-tab.png",
+      "profile": "nova",
+      "url": "about:newtab",
+      "prefs": {
+        "sidebar.revamp": true,
+        "sidebar.visibility": "always-show"
+      },
+      "wait_ms": 12000,
+      "notes": "Nova new tab page (no-marionette: Activity Stream is suppressed under Marionette).",
+      "automation": "hybrid",
+      "requires_no_marionette": true
+    },
+    {
+      "id": "private-window",
+      "filename": "06-private-window.png",
+      "profile": "nova",
+      "url": "about:privatebrowsing",
+      "firefox_args": [
+        "-private-window"
+      ],
+      "wait_ms": 8000,
+      "notes": "Private browsing window (no-marionette to avoid urlbar stripes).",
+      "automation": "hybrid",
+      "requires_no_marionette": true
+    },
+    {
+      "id": "smart-window",
+      "filename": "07-smart-window.png",
+      "profile": "nova",
+      "url": "about:newtab",
+      "prefs": {
+        "browser.smartwindow.tos.consentTime": 1
+      },
+      "wait_ms": 12000,
+      "notes": "Smart Window requires Mozilla account sign-in — no programmatic launch path exists. Capture manually via hamburger menu → New Smart Window after signing in.",
+      "automation": "manual"
+    },
+    {
+      "id": "search",
+      "filename": "08-search.png",
+      "profile": "nova",
+      "url": "about:blank",
+      "keys": [
+        "Meta+l"
+      ],
+      "type_text": "firefox nova",
+      "wait_ms": 3000,
+      "notes": "Urlbar focused with query text.",
+      "automation": "automated"
+    },
+    {
+      "id": "first-run",
+      "filename": "09-first-run.png",
+      "profile": "first-run",
+      "url": "about:home",
+      "firefox_args": [
+        "-new-instance"
+      ],
+      "wait_ms": 8000,
+      "notes": "Fresh profile \u2014 About Welcome / first-run onboarding.",
+      "automation": "automated"
+    },
+    {
+      "id": "continuous",
+      "filename": "10-continuous.png",
+      "profile": "continuous",
+      "url": "https://example.com",
+      "firefox_args": [
+        "-new-instance"
+      ],
+      "wait_ms": 5000,
+      "notes": "Post-first-run profile for deferred / continuous onboarding prompts.",
+      "automation": "automated"
+    },
+    {
+      "id": "settings-account",
+      "filename": "11-settings-account.png",
+      "profile": "nova",
+      "url": "about:preferences#sync",
+      "wait_ms": 8000,
+      "notes": "Settings \u2014 Account section selected (no-marionette to avoid urlbar stripes).",
+      "automation": "hybrid",
+      "requires_no_marionette": true
+    },
+    {
+      "id": "customize-toolbar",
+      "filename": "12-customize-toolbar.png",
+      "profile": "nova",
+      "url": "https://example.com",
+      "customize_toolbar": true,
+      "wait_ms": 8000,
+      "notes": "Customize Toolbar mode (foxfooding: empty space layout).",
+      "automation": "automated"
+    },
+    {
+      "id": "chrome-dark",
+      "filename": "13-chrome-dark.png",
+      "profile": "nova",
+      "url": "https://example.com",
+      "prefs": {
+        "extensions.activeThemeID": "firefox-compact-dark@mozilla.org",
+        "browser.theme.toolbar-theme": 0,
+        "browser.theme.content-theme": 0,
+        "layout.css.prefers-color-scheme.content-override": 0,
+        "browser.in-content.dark-mode": true
+      },
+      "wait_ms": 4000,
+      "notes": "Default Dark theme \u2014 selected tab fill (foxfooding TC-CH-06).",
+      "automation": "manual"
+    },
+    {
+      "id": "sidebar-history-empty",
+      "filename": "14-sidebar-history-empty.png",
+      "profile": "nova",
+      "url": "https://example.com",
+      "prefs": {
+        "sidebar.revamp": true,
+        "sidebar.visibility": "always-show",
+        "sidebar.verticalTabs": true,
+        "sidebar.new-sidebar.has-used": true,
+        "places.history.enabled": false
+      },
+      "sidebar_panel": "history",
+      "wait_ms": 6000,
+      "notes": "History sidebar empty state illustration.",
+      "automation": "automated"
+    },
+    {
+      "id": "vertical-tabs-overflow",
+      "filename": "15-vertical-tabs-overflow.png",
+      "profile": "nova",
+      "url": "about:blank",
+      "prefs": {
+        "sidebar.verticalTabs": true,
+        "sidebar.revamp": true,
+        "sidebar.visibility": "always-show",
+        "browser.pinning.onboarding.dismissed": true,
+        "browser.tabs.pinnedTabsOnboarding.dismissed": true,
+        "sidebar.new-sidebar.has-used": true
+      },
+      "open_tabs": [
+        "about:blank",
+        "about:blank?n=2",
+        "about:blank?n=3",
+        "about:blank?n=4",
+        "about:blank?n=5",
+        "about:blank?n=6",
+        "about:blank?n=7",
+        "about:blank?n=8",
+        "about:blank?n=9",
+        "about:blank?n=10",
+        "about:blank?n=11",
+        "about:blank?n=12",
+        "about:blank?n=13",
+        "about:blank?n=14",
+        "about:blank?n=15"
+      ],
+      "scroll_vertical_tabs": true,
+      "wait_ms": 6000,
+      "notes": "Vertical tabs scrolled \u2014 overflow fade and div line (foxfooding TC-VT-01/02). Uses about:blank tabs to avoid DNS dependency.",
+      "automation": "automated"
+    },
+    {
+      "id": "tab-grouping-collapsed",
+      "filename": "16-tab-grouping-collapsed.png",
+      "profile": "nova",
+      "url": "https://example.com",
+      "prefs": {
+        "browser.tabs.groups.enabled": true
+      },
+      "open_tabs": [
+        "https://example.com",
+        "https://www.mozilla.org",
+        "https://www.example.org"
+      ],
+      "tab_group": true,
+      "tab_group_collapsed": true,
+      "wait_ms": 6000,
+      "notes": "Collapsed tab group \u2014 hairline collapse direction (foxfooding TC-CH-04).",
+      "automation": "manual"
+    },
+    {
+      "id": "chrome-youtube-background",
+      "filename": "17-chrome-youtube-background.png",
+      "profile": "nova",
+      "url": "https://example.com",
+      "background_tab_url": "https://www.youtube.com/watch?v=jNQXAC9IVRw",
+      "wait_ms": 8000,
+      "notes": "YouTube in background tab \u2014 media autoplay icon (foxfooding TC-CH-08).",
+      "automation": "automated"
+    }
+  ]
+}

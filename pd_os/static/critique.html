@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Critique prep · Mobile &amp; AI UX</title>
+  <style>
+    :root {
+      --bg: #f6f5f2;
+      --panel: #ffffff;
+      --border: #e4e0d8;
+      --text: #1c1b19;
+      --muted: #6b6560;
+      --accent: #ff7139;
+      --accent-soft: #fff1ea;
+      --ok: #2d6a4f;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "SF Pro Text", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+    }
+    header {
+      background: var(--panel);
+      border-bottom: 1px solid var(--border);
+      padding: 1rem 1.5rem;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 1.15rem;
+      font-weight: 650;
+      letter-spacing: -0.02em;
+    }
+    header p {
+      margin: 0.3rem 0 0;
+      font-size: 0.88rem;
+      color: var(--muted);
+      max-width: 40rem;
+      line-height: 1.45;
+    }
+    .tabs {
+      display: flex;
+      gap: 0.35rem;
+      margin-top: 0.85rem;
+      flex-wrap: wrap;
+    }
+    .tab {
+      appearance: none;
+      border: 1px solid var(--border);
+      background: var(--panel);
+      color: var(--muted);
+      border-radius: 999px;
+      padding: 0.3rem 0.7rem;
+      font-size: 0.8rem;
+      font-weight: 550;
+      cursor: pointer;
+    }
+    .tab:hover { background: #faf9f7; color: var(--text); }
+    .tab.active {
+      background: var(--accent-soft);
+      border-color: #ffc9b0;
+      color: #9a3412;
+    }
+    main {
+      max-width: 56rem;
+      margin: 0 auto;
+      padding: 1.5rem;
+    }
+    .panel { display: none; }
+    .panel.active { display: block; }
+    .field { margin-bottom: 1rem; }
+    .field label {
+      display: block;
+      font-size: 0.82rem;
+      font-weight: 600;
+      margin-bottom: 0.35rem;
+    }
+    .field .hint {
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin-top: 0.25rem;
+    }
+    .field input, .field select, .field textarea {
+      width: 100%;
+      font: inherit;
+      font-size: 0.9rem;
+      padding: 0.55rem 0.65rem;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: var(--panel);
+    }
+    .field textarea { min-height: 4.5rem; resize: vertical; }
+    .field-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem;
+    }
+    .checkbox-row {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.9rem;
+    }
+    .checkbox-row input { width: auto; }
+    .actions {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin-top: 0.25rem;
+    }
+    button {
+      appearance: none;
+      border: 1px solid var(--border);
+      background: var(--panel);
+      color: var(--text);
+      border-radius: 8px;
+      padding: 0.45rem 0.8rem;
+      font-size: 0.85rem;
+      cursor: pointer;
+    }
+    button:hover { background: #faf9f7; }
+    button.primary {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+      font-weight: 600;
+    }
+    .toast { font-size: 0.82rem; color: var(--ok); font-weight: 550; }
+    .steps {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 0.85rem 1rem;
+      margin-bottom: 1.25rem;
+      font-size: 0.88rem;
+      line-height: 1.5;
+      color: #4a4540;
+    }
+    .steps ol { margin: 0.35rem 0 0; padding-left: 1.2rem; }
+    .steps li { margin: 0.25rem 0; }
+    .output-block {
+      margin-top: 1.5rem;
+      padding-top: 1.25rem;
+      border-top: 1px solid var(--border);
+    }
+    .output-block h3 {
+      margin: 0 0 0.5rem;
+      font-size: 0.95rem;
+    }
+    pre {
+      background: #1c1b19;
+      color: #f6f5f2;
+      padding: 1rem;
+      border-radius: 10px;
+      overflow: auto;
+      font-size: 0.82rem;
+      line-height: 1.5;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+    .markdown-body {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.25rem 1.5rem;
+      line-height: 1.65;
+      font-size: 0.94rem;
+    }
+    .markdown-body h1, .markdown-body h2, .markdown-body h3 {
+      line-height: 1.25;
+      margin-top: 1.4rem;
+      margin-bottom: 0.65rem;
+    }
+    .markdown-body h1 { font-size: 1.4rem; margin-top: 0; }
+    .markdown-body h2 { font-size: 1.1rem; border-bottom: 1px solid var(--border); padding-bottom: 0.3rem; }
+    .markdown-body code {
+      background: #f0eeea;
+      padding: 0.1rem 0.35rem;
+      border-radius: 4px;
+      font-size: 0.88em;
+    }
+    .markdown-body pre {
+      margin: 0.75rem 0;
+    }
+    @media (max-width: 640px) {
+      .field-row { grid-template-columns: 1fr; }
+      main { padding: 1rem; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Critique prep</h1>
+    <p>Before <code>#mobile_x_ai</code> or live review. Fill the form → copy the Cursor prompt → run with <code>@setup/agents/critique-prep.md</code>.</p>
+    <div class="tabs" id="tabs">
+      <button type="button" class="tab active" data-panel="prep">Prep form</button>
+      <button type="button" class="tab" data-panel="principles">Principles</button>
+      <button type="button" class="tab" data-panel="workflow">Workflow</button>
+      <button type="button" class="tab" data-panel="agent">Agent prompt</button>
+      <button type="button" class="tab" data-panel="after">After critique</button>
+    </div>
+  </header>
+  <main>
+    <section class="panel active" id="panel-prep">
+      <div class="steps">
+        <strong>How to use</strong>
+        <ol>
+          <li>Fill in the form below.</li>
+          <li><strong>Generate</strong> → copy the Cursor prompt.</li>
+          <li>Paste in Cursor with <code>@setup/agents/critique-prep.md</code>.</li>
+          <li>Copy the finished Slack post into <code>#mobile_x_ai</code>.</li>
+        </ol>
+      </div>
+      <form id="critique-form">
+        <div class="field-row">
+          <div class="field">
+            <label for="jira_key">Jira key</label>
+            <input id="jira_key" name="jira_key" placeholder="FXMOB-123" />
+          </div>
+          <div class="field">
+            <label for="phase">Phase</label>
+            <select id="phase" name="phase">
+              <option>Discovery</option>
+              <option>Definition</option>
+              <option selected>Design</option>
+              <option>Validation</option>
+              <option>Handoff</option>
+            </select>
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label for="figma_url">Figma link</label>
+            <input id="figma_url" name="figma_url" type="url" placeholder="https://figma.com/design/…" />
+          </div>
+          <div class="field">
+            <label for="frame_name">Frame name</label>
+            <input id="frame_name" name="frame_name" placeholder="Settings · VPN permissions" />
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label for="decision_type">Decision type</label>
+            <select id="decision_type" name="decision_type">
+              <option>Direction</option>
+              <option>Scope</option>
+              <option>Quality bar</option>
+              <option>Risk</option>
+              <option>Explore</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="owner">Owner</label>
+            <input id="owner" name="owner" placeholder="@you" />
+          </div>
+        </div>
+        <div class="field">
+          <label for="problem_statement">Problem (user + job + why now)</label>
+          <textarea id="problem_statement" name="problem_statement" placeholder="Android users drop off at VPN permissions…"></textarea>
+        </div>
+        <div class="field">
+          <label for="if_no_alignment">If reviewers say no</label>
+          <input id="if_no_alignment" name="if_no_alignment" placeholder="Scope cut, slip sprint, escalate to…" />
+        </div>
+        <div class="field">
+          <label for="exit_goal">Exit we're aiming for</label>
+          <input id="exit_goal" name="exit_goal" placeholder="Build-ready design for Nightly MVP" />
+        </div>
+        <div class="field">
+          <label for="constraints">Constraints</label>
+          <textarea id="constraints" name="constraints" placeholder="Ship Nightly week 24, a11y AA, no new strings…"></textarea>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label for="by_when">By when</label>
+            <input id="by_when" name="by_when" placeholder="Fri EOD / Sprint 12" />
+          </div>
+          <div class="field">
+            <label for="initiative">Initiative folder (optional)</label>
+            <input id="initiative" name="initiative" placeholder="2026-06-vpn-setup" />
+            <div class="hint">Under data/projects/ — agent reads brief.md if present</div>
+          </div>
+        </div>
+        <div class="field checkbox-row">
+          <input type="checkbox" id="nova_in_scope" name="nova_in_scope" />
+          <label for="nova_in_scope">Nova / desktop chrome in scope</label>
+        </div>
+        <div class="actions">
+          <button type="submit" class="primary">Generate</button>
+          <button type="button" id="save-draft-btn">Save draft</button>
+          <span class="toast" id="form-toast" hidden></span>
+        </div>
+      </form>
+      <div class="output-block" id="critique-output" hidden>
+        <h3>Cursor prompt</h3>
+        <pre id="cursor-prompt"></pre>
+        <button type="button" data-copy="cursor-prompt">Copy prompt</button>
+        <h3 style="margin-top:1.25rem">Slack skeleton</h3>
+        <pre id="slack-skeleton"></pre>
+        <button type="button" data-copy="slack-skeleton">Copy Slack post</button>
+      </div>
+    </section>
+    <section class="panel" id="panel-principles"><article class="markdown-body" id="doc-principles">Loading…</article></section>
+    <section class="panel" id="panel-workflow"><article class="markdown-body" id="doc-workflow">Loading…</article></section>
+    <section class="panel" id="panel-agent"><article class="markdown-body" id="doc-agent">Loading…</article></section>
+    <section class="panel" id="panel-after"><article class="markdown-body" id="doc-after">Loading…</article></section>
+  </main>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script>
+    const DOC_MAP = {
+      principles: 'context-library/process/critique-prep.md',
+      workflow: 'context-library/process/mobile_ai_design_review_workflow.md',
+      agent: 'setup/agents/critique-prep.md',
+      after: 'templates/critique_notes.md',
+    };
+    const loaded = {};
+
+    document.querySelectorAll('.tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        const panel = tab.dataset.panel;
+        document.querySelectorAll('.tab').forEach(t => t.classList.toggle('active', t === tab));
+        document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+        document.getElementById('panel-' + panel).classList.add('active');
+        if (panel !== 'prep' && DOC_MAP[panel]) loadDoc(panel, DOC_MAP[panel]);
+      });
+    });
+
+    async function loadDoc(panel, id) {
+      if (loaded[panel]) return;
+      const el = document.getElementById('doc-' + panel);
+      const res = await fetch('/api/doc?id=' + encodeURIComponent(id));
+      const data = await res.json();
+      if (!res.ok) {
+        el.textContent = 'Could not load doc.';
+        return;
+      }
+      el.innerHTML = window.marked ? marked.parse(data.content) : '<pre>' + data.content + '</pre>';
+      loaded[panel] = true;
+    }
+
+    document.getElementById('critique-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      await generateCritique(false);
+    });
+    document.getElementById('save-draft-btn').addEventListener('click', () => generateCritique(true));
+    document.querySelectorAll('[data-copy]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const el = document.getElementById(btn.dataset.copy);
+        navigator.clipboard.writeText(el.textContent || '');
+        flashToast('Copied');
+      });
+    });
+
+    async function generateCritique(save) {
+      const form = document.getElementById('critique-form');
+      const payload = Object.fromEntries(new FormData(form).entries());
+      payload.nova_in_scope = document.getElementById('nova_in_scope').checked;
+      const res = await fetch('/api/critique-prep', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ...payload, save }),
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        flashToast(data.error || 'Failed');
+        return;
+      }
+      document.getElementById('critique-output').hidden = false;
+      document.getElementById('cursor-prompt').textContent = data.cursor_prompt;
+      document.getElementById('slack-skeleton').textContent = data.slack_skeleton;
+      flashToast(data.saved_path ? 'Saved to ' + data.saved_path : 'Generated');
+      document.getElementById('critique-output').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    function flashToast(msg) {
+      const el = document.getElementById('form-toast');
+      el.textContent = msg;
+      el.hidden = false;
+      setTimeout(() => { el.hidden = true; }, 3000);
+    }
+  </script>
+</body>
+</html>

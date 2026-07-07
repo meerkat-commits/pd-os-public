@@ -1,0 +1,74 @@
+# PD-OS local/private outputs
+
+# macOS / local noise
+.DS_Store
+gecko.log
+
+# Generated outputs (safe to regenerate)
+data/digests/
+data/rollups/
+data/drafts/
+
+# Raw inputs / caches (often sensitive)
+data/inbox/
+
+# People memory is almost always private
+data/people/
+
+# Project-local private sources (calibration notes, lattice pulls, etc.)
+data/projects/**/private/
+
+# Performance review calibration — entire project + tooling (local only)
+data/projects/*-performance-review-calibration/
+pd_os/calibration.py
+setup/agents/calibration.md
+setup/agents/calibration-ic.md
+setup/bin/calibration-reminders.sh
+setup/bin/calibration-reminders-pm.sh
+setup/launchd/com.pd-os.calibration-reminders.plist
+setup/launchd/com.pd-os.calibration-reminders-pm.plist
+setup/launchd/install-calibration-reminders.sh
+setup/launchd/uninstall-calibration-reminders.sh
+
+# Legacy per-file calibration exclusions (redundant if whole project ignored)
+data/projects/*-performance-review-calibration/decisions.md
+data/projects/*-performance-review-calibration/sources.md
+data/projects/*-performance-review-calibration/drafts/*performance-summary*
+data/projects/*-performance-review-calibration/drafts/*calibration-session*
+data/projects/*-performance-review-calibration/drafts/*calibration-summaries*
+data/projects/*-performance-review-calibration/drafts/*calibration-promotions*
+data/projects/*-performance-review-calibration/drafts/*calibration-signals*
+data/projects/*-performance-review-calibration/drafts/*calibration-packet*
+data/projects/*-performance-review-calibration/drafts/*calibration-run*
+data/projects/*-performance-review-calibration/drafts/*calibration__*
+data/projects/*-performance-review-calibration/drafts/*external-ICs*
+data/projects/*-performance-review-calibration/drafts/*position-shifts*
+data/projects/*-performance-review-calibration/drafts/2026-06-02__*
+data/projects/*-performance-review-calibration/drafts/2026-06-09__*
+data/projects/*-performance-review-calibration/drafts/EXPORT-google-doc.md
+
+# AI velocity mandate — sensitive/local (manager packet is shareable via export script)
+data/projects/2026-06-ai-velocity-mandate/metrics/
+!data/projects/2026-06-ai-velocity-mandate/metrics/README.md
+data/projects/2026-06-ai-velocity-mandate/decisions.md
+data/projects/2026-06-ai-velocity-mandate/brief.md
+data/projects/2026-06-ai-velocity-mandate/jira.json
+data/projects/2026-06-ai-velocity-mandate/drafts/2026-06__raja-1on1-talking-points.md
+data/projects/2026-06-ai-velocity-mandate/drafts/2026-06__raja-reorg-velocity-sync.md
+data/projects/2026-06-ai-velocity-mandate/drafts/2026-06__velocity-survey.md
+data/projects/2026-06-ai-velocity-mandate/drafts/2026-06__monthly-dashboard-template.md
+data/projects/2026-06-ai-velocity-mandate/private/
+
+# Nova Nightly screenshot captures (regenerated daily; keep brief + shots.json)
+data/projects/2026-06-nova-nightly-screenshots/captures/
+data/projects/2026-06-nova-nightly-screenshots/.profiles/
+data/projects/2026-06-nova-nightly-screenshots/.state/
+
+# Legacy knowledge folder (prefer context-library/)
+data/knowledge/
+
+# Local python env
+.venv/
+__pycache__/
+.pytest_cache/
+

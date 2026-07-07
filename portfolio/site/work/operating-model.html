@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Design operating model — Brooke Katalinich</title>
+  <meta name="description" content="Case study: Design operating model — builder enablement at scale, code-native prototypes, and explicit proof bars.">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a class="site-logo" href="../index.html">BK</a>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="../index.html">Home</a>
+        <a href="firefox-ai-nova.html" aria-current="page">Work</a>
+        <a href="../how-i-work.html">How I work</a>
+        <a href="../about.html">About</a>
+        <a href="../../draft/resume.md">Resume</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <a class="back-link" href="../index.html">← Home</a>
+
+    <header class="case-header">
+      <h1>AI-native design operating system</h1>
+      <p class="case-meta">
+        <span>Director, Mobile &amp; AI UX</span>
+        <span>35-person hybrid org</span>
+        <span>2026 H2</span>
+      </p>
+    </header>
+
+    <figure class="figure figure--slide figure--neutral">
+      <picture>
+        <source srcset="../assets/operating-model/four-layers.png" type="image/png">
+        <img src="../assets/operating-model/four-layers.svg" alt="AI-native design operating system — program, triad, org capability, velocity proof" loading="eager" width="1920" height="1080">
+      </picture>
+      <figcaption>Four layers — program discipline, triad gates, org capability, velocity proof for a 35-person hybrid org.</figcaption>
+    </figure>
+
+    <section class="content-section">
+      <h2>Stakes</h2>
+      <p>Leadership needs to know design is moving faster with AI: more user-visible fixes and shipped product, not more hours. And they need an org where design, partners, and eng are all AI-native builders — not a handoff queue.</p>
+      <blockquote>Not 3× Figma files. Same team, more user-visible fixes and shipped product, with proofs attached instead of process overhead.</blockquote>
+    </section>
+
+    <section class="content-section">
+      <h2>Three bets</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Bet</th><th>Priority</th><th>Proof bar</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>QA &amp; close the loop</strong></td>
+              <td>Now</td>
+              <td>One visual-gap backlog; gaps closed from single queue; issues caught pre-ship</td>
+            </tr>
+            <tr>
+              <td><strong>Faster calls</strong></td>
+              <td>Ongoing</td>
+              <td>Fast signal <strong>changed</strong> a decision. Not "we ran a test"</td>
+            </tr>
+            <tr>
+              <td><strong>Code, not slides</strong></td>
+              <td>Stretch</td>
+              <td>Eng-used prototypes linked in sprint/ticket when team ships in code</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <figure class="figure figure--slide figure--neutral">
+        <picture>
+          <source srcset="../assets/operating-model/three-bets.png" type="image/png">
+          <img src="../assets/operating-model/three-bets.svg" alt="Three velocity bets — QA closure, faster tactical calls, code-native stretch" loading="lazy" width="1920" height="1080">
+        </picture>
+        <figcaption>Proof bars per bet — not 3× Figma files; shipped product and user-visible fixes.</figcaption>
+      </figure>
+    </section>
+
+    <section class="content-section">
+      <h2>Punch severity (Nova builds)</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Level</th><th>Meaning</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Blocker</td><td>Must fix before wider exposure</td></tr>
+            <tr><td>Fix before exposure</td><td>Should fix; don't ship as-is</td></tr>
+            <tr><td>Accept and track</td><td>Known gap. Log it and move on</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="content-section">
+      <h2>Tactical vs strategic</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th></th><th>Tactical → fast call</th><th>Strategic → deep qual</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>What</td>
+              <td>Reversible UI/flow; answerable in &lt;48h</td>
+              <td>Big bet; trust/privacy/new-user risk</td>
+            </tr>
+            <tr>
+              <td>Proof</td>
+              <td>Signal <strong>changed</strong> the decision</td>
+              <td>Documented why fast signal was insufficient</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="content-section">
+      <h2>What we won't count</h2>
+      <ul>
+        <li>Loom or local HTML with <strong>no eng ticket / sprint link</strong></li>
+        <li>"We ran a test" with <strong>no decision change</strong></li>
+        <li>Punch findings scattered across Jira and GitHub with <strong>no owner</strong></li>
+        <li>Figma labeled "prototype" when Eng needed runnable code</li>
+      </ul>
+    </section>
+
+    <section class="content-section">
+      <h2>Operating rules</h2>
+      <ul>
+        <li><strong>Designers initiate.</strong> Partners co-create. Everyone builds with AI — discipline owners gate craft.</li>
+        <li><strong>Human Eng review</strong> on any product code (paper-cut pilot).</li>
+        <li><strong>Monthly proof:</strong> shipped/unblocked · one decision-quality case · throughput trend · one risk + mitigation.</li>
+      </ul>
+      <figure class="figure figure--slide figure--neutral">
+        <picture>
+          <source srcset="../assets/operating-model/pd-os-dashboard.png" type="image/png">
+          <img src="../assets/operating-model/pd-os-dashboard.svg" alt="PD-OS critique prep dashboard" loading="lazy" width="1920" height="1080">
+        </picture>
+        <figcaption>PD-OS locally — context library, initiative workspace, critique prep; hub upstream for team skills.</figcaption>
+      </figure>
+    </section>
+    <div class="cards">
+      <article class="card">
+        <h3>Project Nova</h3>
+        <p>Firefox's 2026 redesign, in Nightly.</p>
+        <a class="card__link" href="nova.html">Read →</a>
+      </article>
+      <article class="card">
+        <h3>Smart Window</h3>
+        <p>Opt-in AI browsing on Mozilla's terms.</p>
+        <a class="card__link" href="smart-window.html">Read →</a>
+      </article>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <p>BK · Director, Mobile &amp; AI UX · Mozilla Firefox</p>
+  </footer>
+</body>
+</html>
