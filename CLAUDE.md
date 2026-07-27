@@ -18,7 +18,7 @@ Prefer pulling the minimum required context:
 - For stakeholder messages: start with `context-library/stakeholders.md`, then relevant `data/people/<Name>.md`, then the initiative’s latest `drafts/`.
 - For an initiative: start with `data/projects/<initiative>/brief.md` + `decisions.md` + latest drafts + any `research/` synthesis.
 - For **Nova desktop UI** (chrome, NTP, settings): read `context-library/design-md/nova-classic/DESIGN.md` and follow Cursor skill **`nova-classic`** (`~/.cursor/skills/nova-classic/SKILL.md`).
-- For **team skills + agents** (critique prep, heuristics, design system, voice): start at [`../ai-native-knowledge-hub/`](../ai-native-knowledge-hub/) — canonical [FirefoxUX/ai-native-knowledge-hub](https://github.com/FirefoxUX/ai-native-knowledge-hub). Read `AGENTS.md` → discipline index → matching skill file. Do not invent Firefox UI or brand rules; flag uncertainty.
+- For **team skills + agents** (critique prep, heuristics, design system, voice): start at [`../ai-native-knowledge-hub/`](../ai-native-knowledge-hub/) — canonical FirefoxUX/ai-native-knowledge-hub. Read `AGENTS.md` → discipline index → matching skill file. Do not invent Firefox UI or brand rules; flag uncertainty.
 
 ## PD-OS ↔ AI Native Knowledge Hub
 

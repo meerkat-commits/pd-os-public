@@ -1,6 +1,6 @@
 # Design critique prep — Mobile & AI UX
 
-Shareable principles for critique across the org. Team procedures: [AI Native Knowledge Hub](https://github.com/FirefoxUX/ai-native-knowledge-hub). Local router: `setup/agents/critique-prep.md`.
+Shareable principles for critique across the org. Team procedures: AI Native Knowledge Hub. Local router: `setup/agents/critique-prep.md`.
 
 ## Why critique is a system
 

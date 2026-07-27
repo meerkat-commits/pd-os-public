@@ -19,6 +19,6 @@ For Firefox **AI Window / Smart Window** — specs, PRDs, patterns, prototypes, 
 
 ## Not for
 
-- Nova desktop chrome only (no Smart Window) — use [design-system skills](https://github.com/FirefoxUX/ai-native-knowledge-hub/tree/main/skills/design-system) or `~/.cursor/skills/nova-classic/`
+- Nova desktop chrome only (no Smart Window) — use design-system skills or `~/.cursor/skills/nova-classic/`
 - Fenix / Android — use `firefox-mobile-android` DESIGN.md
 - Generic a11y pass — use `accessibility` skill

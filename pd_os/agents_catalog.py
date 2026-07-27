@@ -57,7 +57,7 @@ AGENTS: tuple[AgentInfo, ...] = (
 )
 
 HUB_ROOT = "../ai-native-knowledge-hub"
-HUB_URL = "https://github.com/FirefoxUX/ai-native-knowledge-hub"
+HUB_URL = ""
 
 SKILLS: tuple[dict[str, str], ...] = (
     {

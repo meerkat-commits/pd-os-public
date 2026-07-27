@@ -19,18 +19,7 @@ pip install -r requirements.txt
 python3 -m pd_os.cli dashboard --open
 ```
 
-## Public vs private
-
-This repo is a **redacted export**. Excluded: `data/people/`, meeting transcripts, calibration, internal metrics, manager 1:1 docs, full decision registries with colleague names.
-
-Regenerate locally:
-
-```bash
-./setup/bin/export-public-github.sh
-```
-
 ## Links
 
-- AI Native Knowledge Hub: https://github.com/FirefoxUX/ai-native-knowledge-hub
 - Maven (AI-Driven Design): https://maven.com/bkatalinich/ai-driven-design/preview/354376
 - Substack: https://brookekatalinich.substack.com/

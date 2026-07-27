@@ -1,6 +1,6 @@
 # Critique prep — AI Native Knowledge Hub
 
-Team critique procedures live in **[FirefoxUX/ai-native-knowledge-hub](https://github.com/FirefoxUX/ai-native-knowledge-hub)**.
+Team critique procedures live in **FirefoxUX/ai-native-knowledge-hub**.
 
 ## Read first (hub)
 

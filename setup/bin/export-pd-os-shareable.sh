@@ -114,7 +114,7 @@ This folder is a **scrubbed snapshot** for showing how a design-lead operating s
 
 - Repo layout: `context-library/`, `data/projects/`, `templates/`, `setup/`, Python CLI (`pd_os/`)
 - Example initiatives (Nova decisions, mobile DAU brief, velocity shareable docs)
-- Team workflow pointers → [AI Native Knowledge Hub](https://github.com/FirefoxUX/ai-native-knowledge-hub)
+- Team workflow pointers → AI Native Knowledge Hub
 
 ## What's excluded (stays on the owner's machine)
 

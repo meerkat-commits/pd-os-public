@@ -58,13 +58,13 @@ python3 -m pd_os.cli critique-dashboard --open   # http://127.0.0.1:8767
 
 ## PD-OS ↔ AI Native Knowledge Hub
 
-Team skills and agents live in **[FirefoxUX/ai-native-knowledge-hub](https://github.com/FirefoxUX/ai-native-knowledge-hub)** — not a personal export repo.
+Team skills and agents live in **FirefoxUX/ai-native-knowledge-hub** — not a personal export repo.
 
 **Local clone** (sibling to pd-os):
 
 ```bash
 # First time (if missing):
-git clone https://github.com/FirefoxUX/ai-native-knowledge-hub.git ../ai-native-knowledge-hub
+git clone  ../ai-native-knowledge-hub
 
 # Refresh main when consuming team skills:
 git -C ../ai-native-knowledge-hub fetch origin

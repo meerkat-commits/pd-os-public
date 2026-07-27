@@ -97,7 +97,6 @@ Shareable operating model for design velocity with AI: proof bars, QA closure, f
 | [`drafts/2026-06__velocity-operating-rules.md`](drafts/2026-06__velocity-operating-rules.md) | Operating rules and proof bars |
 | [`SHARE.md`](SHARE.md) | What's included vs excluded in public exports |
 
-**Related:** [AI Native Knowledge Hub](https://github.com/FirefoxUX/ai-native-knowledge-hub)
 EOF
 
 cat > "$DEST/data/projects/2026-06-ai-velocity-mandate/SHARE.md" <<'EOF'
@@ -153,19 +152,8 @@ pip install -r requirements.txt
 python3 -m pd_os.cli dashboard --open
 ```
 
-## Public vs private
-
-This repo is a **redacted export**. Excluded: `data/people/`, meeting transcripts, calibration, internal metrics, manager 1:1 docs, full decision registries with colleague names.
-
-Regenerate locally:
-
-```bash
-./setup/bin/export-public-github.sh
-```
-
 ## Links
 
-- AI Native Knowledge Hub: https://github.com/FirefoxUX/ai-native-knowledge-hub
 - Maven (AI-Driven Design): https://maven.com/bkatalinich/ai-driven-design/preview/354376
 - Substack: https://brookekatalinich.substack.com/
 EOF

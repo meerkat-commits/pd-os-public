@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Local export of team-safe PD-OS agents + Cursor skills (for testing or diffing).
-# Canonical team repo: https://github.com/FirefoxUX/ai-native-knowledge-hub
+# Canonical team repo: 
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
@@ -111,7 +111,7 @@ EOF
 cat > "$DEST/AGENTS.md" <<'EOF'
 # Agents index (local export)
 
-> Canonical team index: [FirefoxUX/ai-native-knowledge-hub](https://github.com/FirefoxUX/ai-native-knowledge-hub/blob/main/AGENTS.md)
+> Canonical team index: FirefoxUX/ai-native-knowledge-hub
 
 | Agent | Path | Notes |
 |-------|------|-------|
@@ -129,7 +129,7 @@ EOF
 cat > "$DEST/README.md" <<'EOF'
 # PD-OS design agents & skills (local export)
 
-> **Canonical team repo:** [FirefoxUX/ai-native-knowledge-hub](https://github.com/FirefoxUX/ai-native-knowledge-hub) — use that for shared skills and agents. This folder is a local export from PD-OS for testing or diffing only.
+> **Canonical team repo:** FirefoxUX/ai-native-knowledge-hub — use that for shared skills and agents. This folder is a local export from PD-OS for testing or diffing only.
 
 Team-safe **Cursor agents**, **skill routers**, and **process docs** for design critique and heuristic review.
 
@@ -140,7 +140,7 @@ Team-safe **Cursor agents**, **skill routers**, and **process docs** for design 
 - **Principles & workflow** — `context-library/process/`
 - **Templates** — `templates/` (critique notes, briefs, vision docs)
 
-See **[AGENTS.md](AGENTS.md)** and the [knowledge hub](https://github.com/FirefoxUX/ai-native-knowledge-hub) for team skills.
+See **[AGENTS.md](AGENTS.md)** and the knowledge hub for team skills.
 
 ## Use in Cursor
 
@@ -200,7 +200,7 @@ From your local PD-OS checkout:
 ./setup/bin/export-agents-repo.sh ~/pd-os-agents-export
 ```
 
-Contributions for the team should go to [ai-native-knowledge-hub](https://github.com/FirefoxUX/ai-native-knowledge-hub) via PR.
+Contributions for the team should go to ai-native-knowledge-hub via PR.
 
 ## License
 
@@ -228,5 +228,5 @@ done
 rm -f "$DEST/.claude/skills/smart_window_design.md" 2>/dev/null || true
 echo "Next steps:"
 echo "  cd $DEST"
-echo "  diff against canonical: https://github.com/FirefoxUX/ai-native-knowledge-hub"
+echo "  diff against canonical: "
 echo "  contribute team changes via PR to ai-native-knowledge-hub (not a personal fork)"

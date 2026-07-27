@@ -77,7 +77,7 @@ This branch contains **vetted files only**. Sensitive work (Jira exports, team a
 **Related (on \`main\`):**
 
 - Design specs: https://github.com/meerkat-commits/pd-os
-- Team skills + agents: https://github.com/FirefoxUX/ai-native-knowledge-hub
+- Team skills + agents: 
 
 **Not on this branch:** Co-work Jira prompt, group session agenda, internal \`brief.md\`, metrics data.
 

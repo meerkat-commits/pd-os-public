@@ -5,7 +5,7 @@ set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_ROOT="$(cd "$SCRIPT_DIR/../.." && pwd)"
 DEST="${1:-$HOME/Desktop/critique-prep-$(date +%Y%m%d)}"
-HUB_URL="https://github.com/FirefoxUX/ai-native-knowledge-hub"
+HUB_URL=""
 
 echo "Exporting critique slice → $DEST"
 mkdir -p "$DEST"

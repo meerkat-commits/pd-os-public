@@ -85,7 +85,7 @@ Vetted, shareable docs only. Jira exports, team audit, and internal planning sta
 **Related tools**
 
 - [design-md](https://github.com/meerkat-commits/pd-os) — Nova + mobile specs
-- [AI Native Knowledge Hub](https://github.com/FirefoxUX/ai-native-knowledge-hub) — team skills + critique/heuristics agents
+- AI Native Knowledge Hub — team skills + critique/heuristics agents
 
 Exported: $(date +%Y-%m-%d)
 EOF

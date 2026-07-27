@@ -30,7 +30,7 @@ Checklist for **bootstrapping**, **data layout**, **transcripts → people**, **
 
 ## Skills & sub-agents
 
-- [x] Team skills moved to **[ai-native-knowledge-hub](https://github.com/FirefoxUX/ai-native-knowledge-hub)**; PD-OS keeps `meeting_ingest` and `smart_window_design` only
+- [x] Team skills moved to **ai-native-knowledge-hub**; PD-OS keeps `meeting_ingest` and `smart_window_design` only
 - [ ] Update **`CLAUDE.md`** if default priorities (critique vs vision vs ingest) change
 
 ## Async design review + Heuristics linkage

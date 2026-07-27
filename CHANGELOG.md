@@ -16,7 +16,7 @@
 
 ### Changed
 
-- **Team skills moved to [AI Native Knowledge Hub](https://github.com/FirefoxUX/ai-native-knowledge-hub)** — removed duplicated `.claude/skills/` routers and `sub-agents/`; `setup/agents/critique-prep.md` and `heuristics-review.md` now route to the hub. Dashboard Agents tab lists hub indexes + local PD-OS skills only.
+- **Team skills moved to AI Native Knowledge Hub** — removed duplicated `.claude/skills/` routers and `sub-agents/`; `setup/agents/critique-prep.md` and `heuristics-review.md` now route to the hub. Dashboard Agents tab lists hub indexes + local PD-OS skills only.
 - README: **Async design review (Mobile + AI)** section linking **[design-review-workflow](../../design/design-review-workflow/README.md)** and how initiative folders / templates align with **`#mobile_x_ai`** Slack cadence.
 - **[`OPEN_ITEMS.md`](OPEN_ITEMS.md)** — checklist (venv, `data/`, ingest, templates/skills, review + Heuristics links); README intro links to it.
 

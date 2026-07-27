@@ -1,6 +1,6 @@
 # Heuristics review — AI Native Knowledge Hub
 
-Structured UX heuristic passes (Nielsen, Acorn, DAU, accessibility) are team skills in **[FirefoxUX/ai-native-knowledge-hub](https://github.com/FirefoxUX/ai-native-knowledge-hub)**.
+Structured UX heuristic passes (Nielsen, Acorn, DAU, accessibility) are team skills in **FirefoxUX/ai-native-knowledge-hub**.
 
 ## Read first (hub)
 
