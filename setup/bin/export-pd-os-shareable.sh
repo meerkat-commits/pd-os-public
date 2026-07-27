@@ -65,9 +65,9 @@ RSYNC=(rsync -a --delete --delete-excluded
   --exclude '2026-06-02__*'
   --exclude '2026-06-09__*'
   --exclude 'EXPORT-google-doc.md'
-  --exclude 'portfolio/.public-export/'
-  --exclude 'portfolio/.github-publish/'
-  --exclude 'portfolio/.fig-extract/'
+  --exclude '.github-publish/'
+  --exclude '.public-export/'
+  --exclude '.fig-extract/'
 )
 
 "${RSYNC[@]}" "$REPO_ROOT/" "$DEST/"

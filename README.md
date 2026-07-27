@@ -1,26 +1,15 @@
 # PD-OS — Brooke Katalinich
 
-Public snapshot of a **Product Design Operating System** and VP-positioned portfolio.
+Public snapshot of a **Product Design Operating System**.
 
 ## What's here
 
 | Path | Contents |
 |------|----------|
-| [`portfolio/`](portfolio/) | Static portfolio site + draft copy (VP / AI-native positioning) |
 | [`context-library/`](context-library/) | Stable product and process context |
 | [`data/projects/`](data/projects/) | Example initiatives (Nova, velocity mandate) |
 | [`pd_os/`](pd_os/) | Python CLI — digests, critique prep, dashboard |
 | [`setup/`](setup/) | Agents, launchd templates, export scripts |
-
-## Portfolio site
-
-```bash
-cd portfolio/site
-python3 -m http.server 8080
-# http://localhost:8080
-```
-
-Resume: [`portfolio/draft/resume.md`](portfolio/draft/resume.md)
 
 ## Quick start (PD-OS)
 
@@ -42,7 +31,6 @@ Regenerate locally:
 
 ## Links
 
-- Portfolio case studies: [`portfolio/draft/`](portfolio/draft/)
 - AI Native Knowledge Hub: https://github.com/FirefoxUX/ai-native-knowledge-hub
 - Maven (AI-Driven Design): https://maven.com/bkatalinich/ai-driven-design/preview/354376
 - Substack: https://brookekatalinich.substack.com/
