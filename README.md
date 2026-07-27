@@ -1,4 +1,4 @@
-# PD-OS + Portfolio — Brooke Katalinich
+# PD-OS — Brooke Katalinich
 
 Public snapshot of a **Product Design Operating System** and VP-positioned portfolio.
 
