@@ -23,3 +23,7 @@ python3 -m pd_os.cli dashboard --open
 
 - Maven (AI-Driven Design): https://maven.com/bkatalinich/ai-driven-design/preview/354376
 - Substack: https://brookekatalinich.substack.com/
+
+## Design leadership skills
+
+Agentic skills for design leadership live in [`design-leadership-skills/`](design-leadership-skills/): MC Dean's collection (MIT, attributed) extended with a design-craft plugin built from my craft definition. Install in Claude Code with `/plugin marketplace add` pointing at that folder.
